@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Food } from '../../../shared/models/food';
+import { Food } from '../../../shared/models/Food';
 import { FoodService } from '../../../services/food.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CurrencyPipe } from '@angular/common';
