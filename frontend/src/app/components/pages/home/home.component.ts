@@ -4,11 +4,12 @@ import { FoodService } from '../../../services/food.service';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CurrencyPipe } from '@angular/common';
 import { SearchComponent } from '../../partials/search/search.component';
+import { TagsComponent } from '../../partials/tags/tags.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterModule, CurrencyPipe, SearchComponent],
+  imports: [RouterModule, CurrencyPipe, SearchComponent, TagsComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
@@ -21,6 +22,8 @@ export class HomeComponent {
   ) {
     activatedRoute.params.subscribe((params) => {
       if (params.search) this.foods = this.foodService.getSearch(params.search);
+      else if (params.tag)
+        this.foods = this.foodService.getSearchByTag(params.tag);
       else this.foods = foodService.getAll();
     });
   }

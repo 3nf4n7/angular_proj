@@ -3,5 +3,6 @@ import { HomeComponent } from './components/pages/home/home.component';
 
 export const routes: Routes = [
   { path: 'search/:search', component: HomeComponent },
+  { path: 'tag/:tag', component: HomeComponent },
   { path: '', component: HomeComponent },
 ];
