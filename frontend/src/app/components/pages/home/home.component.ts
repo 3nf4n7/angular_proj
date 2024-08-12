@@ -6,6 +6,7 @@ import { CurrencyPipe } from '@angular/common';
 import { SearchComponent } from '../../partials/search/search.component';
 import { TagsComponent } from '../../partials/tags/tags.component';
 import { NotFoundComponent } from '../../partials/not-found/not-found.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -27,11 +28,17 @@ export class HomeComponent {
     private foodService: FoodService,
     activatedRoute: ActivatedRoute
   ) {
+    let foodsObservable: Observable<Food[]>;
     activatedRoute.params.subscribe((params) => {
-      if (params.search) this.foods = this.foodService.getSearch(params.search);
+      if (params.search)
+        foodsObservable = this.foodService.getSearch(params.search);
       else if (params.tag)
-        this.foods = this.foodService.getSearchByTag(params.tag);
-      else this.foods = foodService.getAll();
+        foodsObservable = this.foodService.getSearchByTag(params.tag);
+      else foodsObservable = foodService.getAll();
+
+      foodsObservable.subscribe((serverFoods) => {
+        this.foods = serverFoods;
+      });
     });
   }
 }
