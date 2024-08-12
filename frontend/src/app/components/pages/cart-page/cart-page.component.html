@@ -32,6 +32,12 @@
         </button>
       </div>
     </li>
+    } @empty {
+    <app-not-found
+      [visible]="!cart || !cart.items.length"
+      notFoundMessage="Корзина пустая!"
+      resetLinkText="Вернуться на главную"
+    ></app-not-found>
     }
   </ul>
 
@@ -40,6 +46,11 @@
       <div class="foods-count">{{ cart.totalCount }}</div>
       <div class="total-price">{{ cart.totalPrice | currency }}</div>
     </div>
+    @if (!cart || !cart.items.length) {
+    <p>Нечего покупать</p>
+    } @else {
     <a routerLink="/checkout">Оформить заказ</a>
+
+    }
   </div>
 </div>
