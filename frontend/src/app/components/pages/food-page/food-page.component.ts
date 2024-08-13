@@ -32,6 +32,7 @@ export class FoodPageComponent {
       if (params.id)
         foodService.getFoodById(params.id).subscribe((serverFood) => {
           this.food = serverFood;
+          console.log(this.food);
         });
     });
   }

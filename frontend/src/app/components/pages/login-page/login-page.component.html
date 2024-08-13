@@ -2,34 +2,21 @@
   <div class="details">
     <app-title title="Вход"></app-title>
     <form [formGroup]="loginForm" (ngSubmit)="submit()">
-      <div class="input-container">
-        <label>Почта</label>
-        <div>
-          <input type="email" placeholder="Почта" formControlName="email" />
-        </div>
-        @if (fc.email.errors && isSubmited) {
-        <div class="error-list">
-          @if (fc.email.errors.required) { Поле не должно быть пустым. } @if
-          (fc.email.errors.email) { Почта некорректна. }
-        </div>
-        }
-      </div>
-      <div class="input-container">
-        <label>Пароль</label>
-        <div>
-          <input
-            type="password"
-            placeholder="Пароль"
-            formControlName="password"
-          />
-        </div>
-        @if (fc.password.errors && isSubmited) {
-        <div class="error-list">
-          @if (fc.password.errors.required) { Поле не должно быть пустым. }
-        </div>
-        }
-      </div>
-      <div class="button"><button type="submit">Войти</button></div>
+      <text-input
+        [control]="fc.email"
+        [showErrorsWhen]="isSubmited"
+        type="email"
+        label="Почта"
+      >
+      </text-input>
+      <text-input
+        [control]="fc.password"
+        [showErrorsWhen]="isSubmited"
+        type="password"
+        label="Пароль"
+      >
+      </text-input>
+      <default-button text="Войти"></default-button>
     </form>
   </div>
 </div>
