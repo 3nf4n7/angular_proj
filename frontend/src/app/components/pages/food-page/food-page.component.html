@@ -30,7 +30,7 @@
     </div>
 
     <div class="price">
-      <span> {{ food.price | currency }}</span>
+      <span> {{ food.price | currency : "RUB" : "symbol-narrow" }}</span>
     </div>
 
     <button (click)="addToCart()">Добавить в корзину</button>

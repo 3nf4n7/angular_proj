@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { CartService } from '../../../services/cart.service';
 import { NgIf } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { UserService } from '../../../services/user.service';
+import { User } from '../../../shared/models/User';
 
 @Component({
   selector: 'app-header',
@@ -12,9 +14,22 @@ import { RouterModule } from '@angular/router';
 })
 export class HeaderComponent {
   cartQuantity = 0;
-  constructor(cartService: CartService) {
+  user!: User;
+  constructor(cartService: CartService, private userService: UserService) {
     cartService.getCartObservable().subscribe((newCart) => {
       this.cartQuantity = newCart.totalCount;
     });
+
+    userService.userOservable.subscribe((newUser) => {
+      this.user = newUser;
+    });
+  }
+
+  logout() {
+    this.userService.logout();
+  }
+
+  get isAuth() {
+    return this.user.token;
   }
 }

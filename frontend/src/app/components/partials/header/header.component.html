@@ -3,15 +3,18 @@
     <a routerLink="/" class="logo">Пиццевое!</a>
     <nav>
       <ul>
+        @if (!isAuth) {
         <li><a routerLink="/login">Вход</a></li>
+        } @else {
         <li class="menu-container">
-          <a routerLink="/login">Имя</a>
+          <a routerLink="/login">{{ user.name }}</a>
           <div class="menu">
             <a routerLink="/profile">Профиль</a>
             <a routerLink="/orders">Заказы</a>
-            <a>Выход</a>
+            <a (click)="logout()">Выход</a>
           </div>
         </li>
+        }
         <li>
           <a routerLink="/cart-page">
             Корзина <span *ngIf="cartQuantity">{{ cartQuantity }}</span>

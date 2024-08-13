@@ -17,6 +17,5 @@ export class TagsComponent {
     foodService.getAllTags().subscribe((serverTags) => {
       this.tags = serverTags;
     });
-    console.log(this.tags);
   }
 }
